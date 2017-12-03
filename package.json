@@ -1,0 +1,44 @@
+{
+    "author": "Prefinem",
+    "bugs": {
+        "url": "https://github.com/Prefinem/aws-amplify-react-bootstrap/issues"
+    },
+    "dependencies": {
+        "aws-amplify": "^0.1.20",
+        "aws-amplify-react": "^0.1.20",
+        "react": "^16.1.1",
+        "react-bootstrap": "^0.31.5",
+        "react-dom": "^16.1.1"
+    },
+    "description": "React Components for AWS Amplify using Bootstrap",
+    "devDependencies": {
+        "babel-eslint": "^8.0.3",
+        "eslint": "^4.7.1",
+        "eslint-plugin-babel": "^4.1.2",
+        "eslint-plugin-react": "^7.3.0",
+        "gh-pages": "^1.1.0",
+        "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2",
+        "react-scripts": "^1.0.17"
+    },
+    "homepage": "https://prefinem.github.io/aws-amplify-react-bootstrap/",
+    "keywords": [
+        "AWS Amplify",
+        "Bootstrap",
+        "React",
+        "React Components"
+    ],
+    "license": "MIT",
+    "name": "aws-amplify-react-bootstrap",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Prefinem/aws-amplify-react-bootstrap.git"
+    },
+    "scripts": {
+        "build": "react-scripts build",
+        "deploy": "gh-pages -d build",
+        "predeploy": "npm run build",
+        "start": "react-scripts start"
+    },
+    "version": "1.0.1"
+}
