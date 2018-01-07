@@ -71,7 +71,7 @@ export class RequireNewPassword extends React.Component {
 								<FormGroup controlId="password">
 									<InputGroup>
 										<InputGroup.Addon>
-											<Glyphicon glyph="envelope" />
+											<Glyphicon glyph="lock" />
 										</InputGroup.Addon>
 										<FormControl
 											onChange={(event) => this.setState({ password: event.target.value })}

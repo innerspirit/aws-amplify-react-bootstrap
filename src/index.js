@@ -5,6 +5,5 @@ export Greetings from './Auth/Greetings';
 export RequireNewPassword from './Auth/RequireNewPassword';
 export SignIn from './Auth/SignIn';
 export SignUp from './Auth/SignUp';
-export VerifyContact from './Auth/VerifyContact';
 
 export Theme from './Theme/BlankTheme';

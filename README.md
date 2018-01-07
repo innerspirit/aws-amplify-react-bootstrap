@@ -82,7 +82,6 @@ Most of this is based off the work of [React Bootstrap](https://react-bootstrap.
 			<SignUp />
 			<ConfirmSignUp />
 			<ForgotPassword />
-			<VerifyContact />
 			<App />
 		</Authenticator>
 	);

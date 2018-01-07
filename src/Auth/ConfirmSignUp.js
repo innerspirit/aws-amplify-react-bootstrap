@@ -102,7 +102,7 @@ export class ConfirmSignUp extends React.Component {
 								<FormGroup controlId="username">
 									<InputGroup>
 										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
+											<Glyphicon glyph="user" />
 										</InputGroup.Addon>
 										<FormControl
 											onChange={(event) => this.setState({ username: event.target.value })}

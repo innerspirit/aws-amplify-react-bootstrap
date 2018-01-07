@@ -111,7 +111,7 @@ export class ForgotPassword extends React.Component {
 									<FormGroup controlId="code" key="code">
 										<InputGroup>
 											<InputGroup.Addon>
-												<Glyphicon glyph="envelope" />
+												<Glyphicon glyph="lock" />
 											</InputGroup.Addon>
 											<FormControl
 												onChange={(event) => this.setState({ code: event.target.value })}

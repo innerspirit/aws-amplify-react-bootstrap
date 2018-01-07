@@ -67,7 +67,7 @@ export class ConfirmSignIn extends React.Component {
 								<FormGroup controlId="code">
 									<InputGroup>
 										<InputGroup.Addon>
-											<Glyphicon glyph="envelope" />
+											<Glyphicon glyph="lock" />
 										</InputGroup.Addon>
 										<FormControl
 											onChange={(event) => this.setState({ code: event.target.value })}
