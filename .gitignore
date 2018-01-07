@@ -1,5 +1,5 @@
-node_modules/
-dist/
 .DS_Store
-/build
 aws-exports.js
+demo/
+dist/
+node_modules/

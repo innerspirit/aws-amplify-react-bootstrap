@@ -8,29 +8,30 @@ import {
 	Grid,
 	InputGroup,
 	Panel,
-	Row
+	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
 import React from 'react';
 
 const header = (<h3>{I18n.get('Sign Up')}</h3>);
 
-class SignIn extends React.Component {
+export class SignUp extends React.Component {
 	state = {
 		email: '',
 		error: '',
 		password: '',
 		phone: '',
-		username: ''
+		username: '',
 	};
 
 	onFormSubmit (event) {
 		event.preventDefault();
 
 		const { email, password, phone, username } = this.state;
+		const { onStateChange } = this.props;
 
 		Auth.signUp(username, password, email, phone)
-			.then(() => this.onStateChange('confirmSignUp', username))
+			.then(() => onStateChange('confirmSignUp', username))
 			.catch((error) => this.setState({ error: error.message }));
 	}
 
@@ -39,7 +40,7 @@ class SignIn extends React.Component {
 	}
 
 	render () {
-		const { authState } = this.props;
+		const { authState, onStateChange } = this.props;
 		const { email, error, password, phone, username } = this.state;
 
 		if (authState !== 'signUp') {
@@ -129,12 +130,12 @@ class SignIn extends React.Component {
 							<hr />
 							<Row>
 								<Col sm={6}>
-									<Button bsStyle="link" onClick={() => this.props.onStateChange('confirmSignUp')}>
+									<Button bsStyle="link" onClick={() => onStateChange('confirmSignUp')}>
 										{I18n.get('Confirm a Code')}
 									</Button>
 								</Col>
 								<Col className="text-right" sm={6}>
-									<Button bsStyle="link" onClick={() => this.props.onStateChange('signIn')}>
+									<Button bsStyle="link" onClick={() => onStateChange('SignUp')}>
 										{I18n.get('Sign In')}
 									</Button>
 								</Col>
@@ -147,4 +148,4 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+export default SignUp;

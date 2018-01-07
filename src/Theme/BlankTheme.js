@@ -1,5 +1,3 @@
-import { ClientDevice, Hub } from 'aws-amplify';
-
 export const A = {};
 export const ActionRow = {};
 export const Album = {};
@@ -46,7 +44,7 @@ export const SignInButton = {};
 export const Space = {};
 export const Text = {};
 
-const BlankTheme = {
+export const BlankTheme = {
 	a: A,
 	actionRow: ActionRow,
 	album: Album,
@@ -91,45 +89,7 @@ const BlankTheme = {
 	sectionHeader: SectionHeader,
 	signInButton: SignInButton,
 	space: Space,
-	text: Text
+	text: Text,
 };
-
-class MediaQuery {
-	query () {
-		const dim = ClientDevice.dimension();
-		const { width, height } = dim;
-
-		if (width < 576) {
-			BlankTheme.albumPhoto = Object.assign({}, AlbumPhoto, Col6);
-			BlankTheme.photo = Object.assign({}, Photo, Col12);
-			BlankTheme.albumText = Object.assign({}, AlbumText, Col12);
-		} else if (width < 768) {
-			BlankTheme.albumPhoto = Object.assign({}, AlbumPhoto, Col4);
-			BlankTheme.photo = Object.assign({}, Photo, Col6);
-			BlankTheme.albumText = Object.assign({}, AlbumText, Col8);
-		} else if (width < 992) {
-			BlankTheme.albumPhoto = Object.assign({}, AlbumPhoto, Col3);
-			BlankTheme.photo = Object.assign({}, Photo, Col6);
-			BlankTheme.albumText = Object.assign({}, AlbumText, Col6);
-		} else {
-			BlankTheme.albumPhoto = Object.assign({}, AlbumPhoto, Col2);
-			BlankTheme.photo = Object.assign({}, Photo, Col4);
-			BlankTheme.albumText = Object.assign({}, AlbumText, Col4);
-		}
-
-		BlankTheme.halfHeight = Object.assign({}, HalfHeight, { height: height / 2 });
-		BlankTheme.text = Object.assign({}, BlankTheme.text, { maxHeight: height / 2 });
-		BlankTheme.albumText = Object.assign({}, BlankTheme.albumText, { maxHeight: height / 3 });
-	}
-
-	onHubCapsule () {
-		this.query();
-	}
-}
-
-const mediaQuery = new MediaQuery();
-
-mediaQuery.query();
-Hub.listen('window', mediaQuery, 'BlankTheme');
 
 export default BlankTheme;

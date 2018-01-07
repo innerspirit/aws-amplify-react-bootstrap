@@ -20,4 +20,46 @@
 
 <br>
 
+<br>
 
+## Usage
+
+	import {
+		ConfirmSignIn,
+		ConfirmSignUp,
+		ForgotPassword,
+		Greetings,
+		RequireNewPassword,
+		SignIn,
+		SignUp,
+		Theme,
+		VerifyContact,
+	} from 'aws-amplify-react-bootstrap';
+	import Amplify from 'aws-amplify';
+	import App from './App';
+	import { Authenticator } from 'aws-amplify-react';
+	import React from 'react';
+	import awsExports from './../aws-exports';
+
+	Amplify.configure(awsExports);
+
+	const federated = {
+		facebook: facebook_app_id,
+		google: google_client_id,
+	};
+
+	const auth = () => (
+		<Authenticator hideDefault={true} theme={Theme}>
+			<Greetings />
+			<SignIn federated={federated} />
+			<ConfirmSignIn />
+			<RequireNewPassword />
+			<SignUp />
+			<ConfirmSignUp />
+			<ForgotPassword />
+			<VerifyContact />
+			<App />
+		</Authenticator>
+	);
+
+	export default auth;

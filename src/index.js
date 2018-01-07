@@ -1,11 +1,10 @@
-import Auth from './components/Auth';
-import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
-import { render } from 'react-dom';
+export ConfirmSignIn from './Auth/ConfirmSignIn';
+export ConfirmSignUp from './Auth/ConfirmSignUp';
+export ForgotPassword from './Auth/ForgotPassword';
+export Greetings from './Auth/Greetings';
+export RequireNewPassword from './Auth/RequireNewPassword';
+export SignIn from './Auth/SignIn';
+export SignUp from './Auth/SignUp';
+export VerifyContact from './Auth/VerifyContact';
 
-render(
-	<BrowserRouter>
-		<Auth />
-	</BrowserRouter>,
-	document.getElementById('app')
-);
+export Theme from './Theme/BlankTheme';

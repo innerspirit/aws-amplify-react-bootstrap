@@ -8,19 +8,19 @@ import {
 	Grid,
 	InputGroup,
 	Panel,
-	Row
+	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
 import React from 'react';
 
 const header = (<h3>{I18n.get('Config Code')}</h3>);
 
-class SignIn extends React.Component {
+export class ConfirmSignUp extends React.Component {
 	state = {
 		code: '',
 		error: '',
 		message: '',
-		username: this.usernameFromAuthData()
+		username: this.usernameFromAuthData(),
 	};
 
 	usernameFromAuthData () {
@@ -44,9 +44,10 @@ class SignIn extends React.Component {
 		event.preventDefault();
 
 		const { code, username } = this.state;
+		const { onStateChange } = this.props;
 
 		Auth.confirmSignUp(username, code)
-			.then(() => this.props.onStateChange('signedUp'))
+			.then(() => onStateChange('signedUp'))
 			.catch((error) => this.setState({ error }));
 	}
 
@@ -63,12 +64,12 @@ class SignIn extends React.Component {
 	handleAlertDismiss () {
 		this.setState({
 			error: '',
-			message: ''
+			message: '',
 		});
 	}
 
 	render () {
-		const { authState } = this.props;
+		const { authState, onStateChange } = this.props;
 		const { code, error, message, username } = this.state;
 
 		if (authState !== 'confirmSignUp') {
@@ -150,7 +151,7 @@ class SignIn extends React.Component {
 							<hr />
 							<Row>
 								<Col className="text-right" sm={12}>
-									<Button bsStyle="link" onClick={() => this.props.onStateChange('signIn')}>
+									<Button bsStyle="link" onClick={() => onStateChange('ConfirmSignUp')}>
 										{I18n.get('Sign In')}
 									</Button>
 								</Col>
@@ -163,4 +164,4 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+export default ConfirmSignUp;

@@ -8,29 +8,32 @@ import {
 	Grid,
 	InputGroup,
 	Panel,
-	Row
+	Row,
 } from 'react-bootstrap';
 import { Auth, I18n, JS } from 'aws-amplify';
+import FederatedButtons from './FederatedButtons';
 import React from 'react';
 
 const header = (<h3>{I18n.get('Sign In')}</h3>);
 
-class SignIn extends React.Component {
+export class SignIn extends React.Component {
 	state = {
 		error: '',
 		password: '',
-		username: ''
+		username: '',
 	};
 
 	checkContact (user) {
+		const { onStateChange } = this.props;
+
 		Auth.verifiedContact(user)
 			.then((data) => {
 				if (JS.isEmpty(data.verified)) {
 					const updatedUser = Object.assign(user, data);
 
-					this.props.onStateChange('verifyContact', updatedUser);
+					onStateChange('verifyContact', updatedUser);
 				} else {
-					this.props.onStateChange('signedIn', user);
+					onStateChange('signedIn', user);
 				}
 			});
 	}
@@ -39,13 +42,14 @@ class SignIn extends React.Component {
 		event.preventDefault();
 
 		const { username, password } = this.state;
+		const { onStateChange } = this.props;
 
 		Auth.signIn(username, password)
 			.then((user) => {
 				const requireMFA = (user.Session !== null);
 
 				if (requireMFA) {
-					this.props.onStateChange('confirmSignIn', user);
+					onStateChange('confirmSignIn', user);
 				} else {
 					this.checkContact(user);
 				}
@@ -58,7 +62,7 @@ class SignIn extends React.Component {
 	}
 
 	render () {
-		const { authState, federated } = this.props;
+		const { authState, federated, onStateChange } = this.props;
 		const { error, password, username } = this.state;
 
 		if (!['signIn', 'signedOut', 'signedUp'].includes(authState)) {
@@ -119,35 +123,21 @@ class SignIn extends React.Component {
 										{I18n.get('Sign In')}
 									</Button>
 								</FormGroup>
-								{federated && (
-									<FormGroup className="text-center">
-										<em>- {I18n.get('or')} -</em>
-									</FormGroup>
-								)}
-								{federated && federated.facebook && (
-									<FormGroup>
-										<Button block bsStyle="default">
-											{I18n.get('Sign in with Facebook')}
-										</Button>
-									</FormGroup>
-								)}
-								{federated && federated.google && (
-									<FormGroup>
-										<Button block bsStyle="default">
-											{I18n.get('Sign in with Google')}
-										</Button>
-									</FormGroup>
-								)}
+								<FederatedButtons
+									authState={authState}
+									federated={federated}
+									onStateChange={onStateChange}
+								/>
 							</form>
 							<hr />
 							<Row>
 								<Col sm={6}>
-									<Button bsStyle="link" onClick={() => this.props.onStateChange('forgotPassword')}>
+									<Button bsStyle="link" onClick={() => onStateChange('forgotPassword')}>
 										{I18n.get('Forgot Password?')}
 									</Button>
 								</Col>
 								<Col className="text-right" sm={6}>
-									<Button bsStyle="link" onClick={() => this.props.onStateChange('signUp')}>
+									<Button bsStyle="link" onClick={() => onStateChange('signUp')}>
 										{I18n.get('Sign Up')}
 									</Button>
 								</Col>
