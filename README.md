@@ -77,7 +77,7 @@ Most of this is based off the work of [React Bootstrap](https://react-bootstrap.
 
 ## Screenshots
 
-Basic Bootstrap Theme
+### Basic Bootstrap Theme
 
 <div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signIn.png" alt="Sign In" width="600"></div>
 <div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signUp.png" alt="Sign Up" width="600"></div>
