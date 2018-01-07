@@ -1,6 +1,16 @@
 <h1 align="center">
 	<br>
-	<a href="https://github.com/Prefinem/aws-amplify-react-bootstrap"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/public/assets/img/logo.png" alt="AWS Amplify React Bootstrap | http://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiIjMDNBOUY0IiwiYm9yZGVyQ29sb3IiOiIjMDE1NzlCIiwiYm9yZGVyV2lkdGgiOiIwIiwiZXhwb3J0U2l6ZSI6NTEyLCJleHBvcnRpbmciOnRydWUsImZvbnRGYW1pbHkiOiJBbGxlcnRhIFN0ZW5jaWwiLCJmb250UG9zaXRpb24iOiI5Mi41IiwiZm9udFNpemUiOiI1MSIsImZvbnRXZWlnaHQiOjYwMCwiaW1hZ2UiOiIiLCJpbWFnZU1hc2siOiIiLCJpbWFnZVNpemUiOjUwLCJzaGFwZSI6InRyaWFuZ2xlIiwidGV4dCI6IkFSQiJ9" width="200"></a>
+	<a href="https://github.com/Prefinem/aws-amplify-react-bootstrap">
+		<svg xmlns="http://www.w3.org/2000/svg" id="svg" version="1.1" viewBox="0 0 100 100" x="0px" y="0px" width="200px"><style type="text/css">/* latin */
+		@font-face {
+			font-family: 'Allerta Stencil';
+			font-style: normal;
+			font-weight: 400;
+			src: local('Allerta Stencil Regular'), local('AllertaStencil-Regular'), url(https://fonts.gstatic.com/s/allertastencil/v8/CdSZfRtHbQrBohqmzSdDYN4YkNTRySE62_JgwwLQLcQ.woff2) format('woff2');
+			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+		}
+		</style><defs><clipPath id="circleClip"><circle cx="50" cy="50" r="50"/></clipPath><clipPath id="polygonClip"><polygon points=" 50,0 6.666666666666667,25 6.666666666666667,75 50,100 93.33333333333333,75 93.33333333333333,25 "/></clipPath></defs><polygon clip-path="url(#polygonClip)" fill="#003366" points=" 50,0 6.666666666666667,25 6.666666666666667,75 50,100 93.33333333333333,75 93.33333333333333,25 " stroke="#33e0ff" stroke-width="0"/><text fill="#33e0ff" font-family="Allerta Stencil" font-size="31" font-weight="600" text-anchor="middle" x="50" y="61"><tspan dy="0" x="50">AARB</tspan></text></svg>
+	</a>
 	<br>
 </h1>
 

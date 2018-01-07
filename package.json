@@ -53,5 +53,5 @@
         "build": "babel src --out-dir dist",
         "lint": "eslint src --fix && eslint demo/src --fix"
     },
-    "version": "1.0.1"
+    "version": "0.0.1"
 }
