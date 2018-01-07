@@ -2,7 +2,7 @@
 	<br>
 	<!-- http://prefinem.com/simple-icon-generator/#eyJiYWNrZ3JvdW5kQ29sb3IiOiIjMDAzMzY2IiwiYm9yZGVyQ29sb3IiOiIjMzNlMGZmIiwiYm9yZGVyV2lkdGgiOiIwIiwiZXhwb3J0U2l6ZSI6NTEyLCJleHBvcnRpbmciOnRydWUsImZvbnRGYW1pbHkiOiJBbGxlcnRhIFN0ZW5jaWwiLCJmb250UG9zaXRpb24iOiI2MSIsImZvbnRTaXplIjoiMzEiLCJmb250V2VpZ2h0Ijo2MDAsImltYWdlIjoiIiwiaW1hZ2VNYXNrIjoiIiwiaW1hZ2VTaXplIjo1MCwic2hhcGUiOiJoZXhhZ29uMTIwIiwidGV4dCI6IkFBUkIifQ -->
 	<a href="https://github.com/Prefinem/aws-amplify-react-bootstrap">
-		<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/logo.svg" alt="AWS Amplify React Bootstrap" width="200">
+		<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/logo.png" alt="AWS Amplify React Bootstrap" width="200">
 	</a>
 	<br>
 </h1>
