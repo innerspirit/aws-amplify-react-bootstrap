@@ -50,7 +50,8 @@
         "url": "git+https://github.com/Prefinem/aws-amplify-react-bootstrap.git"
     },
     "scripts": {
-        "build": "babel src --out-dir dist",
+        "build": "gulp",
+        "watch": "gulp watch",
         "lint": "eslint src --fix && eslint demo/src --fix"
     },
     "version": "0.0.1"
