@@ -25,6 +25,14 @@
 
 <br>
 
+## Included Resources
+
+Currently this just implements the authentication system.  As time progresses and I have more time to add features or need them for other projects, I will add them.  This is using the basic Bootstrap Theme but any theme that is build off of Bootstrap (and uses Bootstrap components) should work.
+
+## Thanks To
+
+Most of this is based off the work of [React Bootstrap](https://react-bootstrap.github.io/) and [AWS Amplify](https://github.com/aws/aws-amplify).  Without them, this wouldn't even exist.
+
 ## Usage
 
 	import {
@@ -66,3 +74,12 @@
 	);
 
 	export default auth;
+
+## Screenshots
+
+Basic Bootstrap Theme
+
+<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signIn.png" alt="Sign In" width="600">
+<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signUp.png" alt="Sign Up" width="600">
+<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/forgotPassword.png" alt="Forgot Password" width="600">
+<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/confirmCode.png" alt="Confirm Code" width="600">
