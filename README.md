@@ -79,7 +79,7 @@ Most of this is based off the work of [React Bootstrap](https://react-bootstrap.
 
 Basic Bootstrap Theme
 
-<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signIn.png" alt="Sign In" width="600">
-<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signUp.png" alt="Sign Up" width="600">
-<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/forgotPassword.png" alt="Forgot Password" width="600">
-<img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/confirmCode.png" alt="Confirm Code" width="600">
+<div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signIn.png" alt="Sign In" width="600"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/signUp.png" alt="Sign Up" width="600"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/forgotPassword.png" alt="Forgot Password" width="600"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/prefinem/aws-amplify-react-bootstrap/master/screenshots/confirmCode.png" alt="Confirm Code" width="600"></div>
