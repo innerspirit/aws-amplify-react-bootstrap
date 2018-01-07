@@ -135,7 +135,7 @@ export class SignUp extends React.Component {
 									</Button>
 								</Col>
 								<Col className="text-right" sm={6}>
-									<Button bsStyle="link" onClick={() => onStateChange('SignUp')}>
+									<Button bsStyle="link" onClick={() => onStateChange('signIn')}>
 										{I18n.get('Sign In')}
 									</Button>
 								</Col>

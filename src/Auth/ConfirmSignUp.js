@@ -13,7 +13,7 @@ import {
 import { Auth, I18n } from 'aws-amplify';
 import React from 'react';
 
-const header = (<h3>{I18n.get('Config Code')}</h3>);
+const header = (<h3>{I18n.get('Confirm Code')}</h3>);
 
 export class ConfirmSignUp extends React.Component {
 	state = {
@@ -151,7 +151,7 @@ export class ConfirmSignUp extends React.Component {
 							<hr />
 							<Row>
 								<Col className="text-right" sm={12}>
-									<Button bsStyle="link" onClick={() => onStateChange('ConfirmSignUp')}>
+									<Button bsStyle="link" onClick={() => onStateChange('signIn')}>
 										{I18n.get('Sign In')}
 									</Button>
 								</Col>
