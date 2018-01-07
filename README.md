@@ -17,7 +17,7 @@
 		<img src="https://img.shields.io/github/issues/Prefinem/aws-amplify-react-bootstrap.svg" alt="Github Issues">
 	</a>
 	<a href="https://github.com/Prefinem/aws-amplify-react-bootstrap">
-		<img src="https://img.shields.io/badge/version-1.0.1-green.svg" alt="Current Version">
+		<img src="https://img.shields.io/badge/version-0.0.2-green.svg" alt="Current Version">
 	</a>
 </p>
 
