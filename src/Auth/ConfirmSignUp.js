@@ -2,26 +2,26 @@ import {
 	Alert,
 	Button,
 	Col,
-	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
+import CodeInput from './Helpers/CodeInput';
 import React from 'react';
+import UsernameInput from './Helpers/UsernameInput';
 
 const header = (<h3>{I18n.get('Confirm Code')}</h3>);
+const defaultState = {
+	code: '',
+	error: '',
+	message: '',
+	username: '',
+};
 
 export class ConfirmSignUp extends React.Component {
-	state = {
-		code: '',
-		error: '',
-		message: '',
-		username: this.usernameFromAuthData(),
-	};
+	state = { ...defaultState };
 
 	usernameFromAuthData () {
 		const { authData } = this.props;
@@ -47,7 +47,10 @@ export class ConfirmSignUp extends React.Component {
 		const { onStateChange } = this.props;
 
 		Auth.confirmSignUp(username, code)
-			.then(() => onStateChange('signedUp'))
+			.then(() => {
+				this.setState(defaultState);
+				onStateChange('signedUp');
+			})
 			.catch((error) => this.setState({ error }));
 	}
 
@@ -69,7 +72,7 @@ export class ConfirmSignUp extends React.Component {
 	}
 
 	render () {
-		const { authState, onStateChange } = this.props;
+		const { authState, onStateChange, noIcons, icons } = this.props;
 		const { code, error, message, username } = this.state;
 
 		if (authState !== 'confirmSignUp') {
@@ -99,32 +102,18 @@ export class ConfirmSignUp extends React.Component {
 										{I18n.get(message)}
 									</Alert>
 								)}
-								<FormGroup controlId="username">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="user" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ username: event.target.value })}
-											placeholder={I18n.get('Username')}
-											type="text"
-											value={username}
-										/>
-									</InputGroup>
-								</FormGroup>
-								<FormGroup controlId="code">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ code: event.target.value })}
-											placeholder={I18n.get('Code')}
-											type="text"
-											value={code}
-										/>
-									</InputGroup>
-								</FormGroup>
+								<UsernameInput
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+									username={username}
+								/>
+								<CodeInput
+									code={code}
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
 								<FormGroup>
 									<Button
 										block

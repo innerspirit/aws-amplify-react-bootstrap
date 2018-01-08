@@ -61,7 +61,6 @@ export class Greetings extends React.Component {
 		this.setState({ alertVisible: true });
 	}
 
-
 	render () {
 		const { hide } = this.props;
 		const { alertVisible, authData, authState } = this.state;
@@ -76,8 +75,6 @@ export class Greetings extends React.Component {
 		if (authState !== 'signedIn' || !message || !alertVisible) {
 			return null;
 		}
-
-		console.log(authState);
 
 		return (
 			<Alert bsStyle="success" onDismiss={() => this.handleAlertDismiss()}>

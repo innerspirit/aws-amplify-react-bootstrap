@@ -2,27 +2,29 @@ import {
 	Alert,
 	Button,
 	Col,
-	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
+import EmailInput from './Helpers/EmailInput';
+import PasswordInput from './Helpers/PasswordInput';
+import PhoneInput from './Helpers/PhoneInput';
 import React from 'react';
+import UsernameInput from './Helpers/UsernameInput';
 
 const header = (<h3>{I18n.get('Sign Up')}</h3>);
+const defaultState = {
+	email: '',
+	error: '',
+	password: '',
+	phone: '',
+	username: '',
+};
 
 export class SignUp extends React.Component {
-	state = {
-		email: '',
-		error: '',
-		password: '',
-		phone: '',
-		username: '',
-	};
+	state = { ...defaultState };
 
 	onFormSubmit (event) {
 		event.preventDefault();
@@ -31,7 +33,10 @@ export class SignUp extends React.Component {
 		const { onStateChange } = this.props;
 
 		Auth.signUp(username, password, email, phone)
-			.then(() => onStateChange('confirmSignUp', username))
+			.then(() => {
+				this.setState(defaultState);
+				onStateChange('confirmSignUp', username);
+			})
 			.catch((error) => this.setState({ error: error.message }));
 	}
 
@@ -40,7 +45,7 @@ export class SignUp extends React.Component {
 	}
 
 	render () {
-		const { authState, onStateChange } = this.props;
+		const { authState, onStateChange, noIcons, icons } = this.props;
 		const { email, error, password, phone, username } = this.state;
 
 		if (authState !== 'signUp') {
@@ -65,58 +70,30 @@ export class SignUp extends React.Component {
 										{I18n.get(error)}
 									</Alert>
 								)}
-								<FormGroup controlId="username">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="user" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ username: event.target.value })}
-											placeholder={I18n.get('Username')}
-											type="text"
-											value={username}
-										/>
-									</InputGroup>
-								</FormGroup>
-								<FormGroup controlId="password">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ password: event.target.value })}
-											placeholder={I18n.get('Password')}
-											type="password"
-											value={password}
-										/>
-									</InputGroup>
-								</FormGroup>
-								<FormGroup controlId="email">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="envelope" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ email: event.target.value })}
-											placeholder={I18n.get('Email')}
-											type="email"
-											value={email}
-										/>
-									</InputGroup>
-								</FormGroup>
-								<FormGroup controlId="phone">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="phone" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ phone: event.target.value })}
-											placeholder={I18n.get('Phone')}
-											type="phone"
-											value={phone}
-										/>
-									</InputGroup>
-								</FormGroup>
+								<UsernameInput
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+									username={username}
+								/>
+								<PasswordInput
+									icons={icons}
+									noIcons={noIcons}
+									password={password}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
+								<EmailInput
+									email={email}
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
+								<PhoneInput
+									icons={icons}
+									noIcons={noIcons}
+									phone={phone}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
 								<FormGroup>
 									<Button
 										block

@@ -2,32 +2,34 @@ import {
 	Alert,
 	Button,
 	Col,
-	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n, JS } from 'aws-amplify';
 import FederatedButtons from './FederatedButtons';
+import PasswordInput from './Helpers/PasswordInput';
 import React from 'react';
+import UsernameInput from './Helpers/UsernameInput';
 
 const header = (<h3>{I18n.get('Sign In')}</h3>);
 
+const defaultState = {
+	error: '',
+	password: '',
+	username: '',
+};
+
 export class SignIn extends React.Component {
-	state = {
-		error: '',
-		password: '',
-		username: '',
-	};
+	state = { ...defaultState }
 
 	checkContact (user) {
 		const { onStateChange } = this.props;
 
 		Auth.verifiedContact(user)
 			.then((data) => {
+				this.setState(defaultState);
 				if (JS.isEmpty(data.verified)) {
 					const updatedUser = Object.assign(user, data);
 
@@ -62,7 +64,7 @@ export class SignIn extends React.Component {
 	}
 
 	render () {
-		const { authState, federated, onStateChange } = this.props;
+		const { authState, federated, onStateChange, noIcons, icons } = this.props;
 		const { error, password, username } = this.state;
 
 		if (!['signIn', 'signedOut', 'signedUp'].includes(authState)) {
@@ -87,32 +89,18 @@ export class SignIn extends React.Component {
 										{I18n.get(error)}
 									</Alert>
 								)}
-								<FormGroup controlId="username">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="user" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ username: event.target.value })}
-											placeholder={I18n.get('Username')}
-											type="text"
-											value={username}
-										/>
-									</InputGroup>
-								</FormGroup>
-								<FormGroup controlId="password">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ password: event.target.value })}
-											placeholder={I18n.get('Password')}
-											type="password"
-											value={password}
-										/>
-									</InputGroup>
-								</FormGroup>
+								<UsernameInput
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+									username={username}
+								/>
+								<PasswordInput
+									icons={icons}
+									noIcons={noIcons}
+									password={password}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
 								<FormGroup>
 									<Button
 										block

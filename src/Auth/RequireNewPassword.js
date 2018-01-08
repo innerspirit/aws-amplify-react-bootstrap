@@ -4,22 +4,22 @@ import {
 	Col,
 	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
+import PasswordInput from './Helpers/PasswordInput';
 import React from 'react';
 
 const header = (<h3>{I18n.get('Confirm Sign In')}</h3>);
+const defaultState = {
+	error: '',
+	password: '',
+};
 
 export class RequireNewPassword extends React.Component {
-	state = {
-		error: '',
-		password: '',
-	};
+	state = { ...defaultState };
 
 	onFormSubmit (event) {
 		event.preventDefault();
@@ -29,7 +29,10 @@ export class RequireNewPassword extends React.Component {
 		const { requiredAttributes } = authData.challengeParam;
 
 		Auth.completeNewPassword(authData, password, requiredAttributes)
-			.then(() => this.changeState('signedIn'))
+			.then(() => {
+				this.setState(defaultState);
+				this.changeState('signedIn');
+			})
 			.catch((error) => {
 				this.setState({ error: error.message });
 			});
@@ -39,8 +42,19 @@ export class RequireNewPassword extends React.Component {
 		this.setState({ error: '' });
 	}
 
+	passwordInput (password) {
+		return (
+			<FormControl
+				onChange={(event) => this.setState({ password: event.target.value })}
+				placeholder={I18n.get('Password')}
+				type="password"
+				value={password}
+			/>
+		);
+	}
+
 	render () {
-		const { authState, hide, onStateChange } = this.props;
+		const { authState, hide, onStateChange, noIcons, icons } = this.props;
 		const { error, password } = this.state;
 
 		if (authState !== 'requireNewPassword') {
@@ -68,19 +82,13 @@ export class RequireNewPassword extends React.Component {
 										{I18n.get(error)}
 									</Alert>
 								)}
-								<FormGroup controlId="password">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ password: event.target.value })}
-											placeholder={I18n.get('Password')}
-											type="text"
-											value={password}
-										/>
-									</InputGroup>
-								</FormGroup>
+								<PasswordInput
+									icons={icons}
+									key="password"
+									noIcons={noIcons}
+									password={password}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
 								<FormGroup>
 									<Button
 										block

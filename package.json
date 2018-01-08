@@ -54,5 +54,5 @@
         "watch": "gulp watch",
         "lint": "eslint src --fix && eslint demo/src --fix"
     },
-    "version": "0.0.2"
+    "version": "0.0.3"
 }

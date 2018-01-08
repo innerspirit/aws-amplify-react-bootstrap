@@ -2,24 +2,23 @@ import {
 	Alert,
 	Button,
 	Col,
-	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
+import CodeInput from './Helpers/CodeInput';
 import React from 'react';
 
 const header = (<h3>{I18n.get('Confirm Sign In')}</h3>);
+const defaultState = {
+	code: '',
+	error: '',
+};
 
 export class ConfirmSignIn extends React.Component {
-	state = {
-		code: '',
-		error: '',
-	};
+	state = { ...defaultState };
 
 	onFormSubmit (event) {
 		event.preventDefault();
@@ -28,7 +27,10 @@ export class ConfirmSignIn extends React.Component {
 		const { code } = this.state;
 
 		Auth.confirmSignIn(authData, code)
-			.then(() => this.changeState('signedIn'))
+			.then(() => {
+				this.setState(defaultState);
+				this.changeState('signedIn');
+			})
 			.catch((error) => {
 				this.setState({ error: error.message });
 			});
@@ -39,7 +41,7 @@ export class ConfirmSignIn extends React.Component {
 	}
 
 	render () {
-		const { authState, onStateChange } = this.props;
+		const { authState, onStateChange, noIcons, icons } = this.props;
 		const { error, code } = this.state;
 
 		if (authState !== 'confirmSignIn') {
@@ -64,19 +66,12 @@ export class ConfirmSignIn extends React.Component {
 										{I18n.get(error)}
 									</Alert>
 								)}
-								<FormGroup controlId="code">
-									<InputGroup>
-										<InputGroup.Addon>
-											<Glyphicon glyph="lock" />
-										</InputGroup.Addon>
-										<FormControl
-											onChange={(event) => this.setState({ code: event.target.value })}
-											placeholder={I18n.get('Code')}
-											type="text"
-											value={code}
-										/>
-									</InputGroup>
-								</FormGroup>
+								<CodeInput
+									code={code}
+									icons={icons}
+									noIcons={noIcons}
+									updateState={(name, value) => this.setState({ [name]: value })}
+								/>
 								<FormGroup>
 									<Button
 										block

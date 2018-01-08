@@ -2,28 +2,29 @@ import {
 	Alert,
 	Button,
 	Col,
-	FormControl,
 	FormGroup,
-	Glyphicon,
 	Grid,
-	InputGroup,
 	Panel,
 	Row,
 } from 'react-bootstrap';
 import { Auth, I18n } from 'aws-amplify';
+import CodeInput from './Helpers/CodeInput';
+import PasswordInput from './Helpers/PasswordInput';
 import React from 'react';
+import UsernameInput from './Helpers/UsernameInput';
 
 const header = (<h3>{I18n.get('Forgot Password')}</h3>);
+const defaultState = {
+	code: '',
+	delivery: null,
+	error: '',
+	password: '',
+	success: '',
+	username: '',
+};
 
 export class ForgotPassword extends React.Component {
-	state = {
-		code: '',
-		delivery: null,
-		error: '',
-		password: '',
-		success: '',
-		username: '',
-	};
+	state = { ...defaultState };
 
 	onFormSubmit (event) {
 		event.preventDefault();
@@ -34,7 +35,7 @@ export class ForgotPassword extends React.Component {
 			Auth.forgotPasswordSubmit(username, code, password)
 				.then(() => {
 					onStateChange('signIn');
-					this.setState({ delivery: null });
+					this.setState(defaultState);
 				})
 				.catch((error) => {
 					this.setState({ error: error.message });
@@ -45,6 +46,7 @@ export class ForgotPassword extends React.Component {
 			Auth.forgotPassword(username)
 				.then((data) => {
 					this.setState({
+						...defaultState,
 						delivery: data.CodeDeliveryDetails,
 						success: 'Please get your email for verification code',
 					});
@@ -64,7 +66,7 @@ export class ForgotPassword extends React.Component {
 	}
 
 	render () {
-		const { authState, onStateChange } = this.props;
+		const { authState, onStateChange, noIcons, icons } = this.props;
 		const { error, code, password, success, username } = this.state;
 
 		if (authState !== 'forgotPassword') {
@@ -95,46 +97,27 @@ export class ForgotPassword extends React.Component {
 									</Alert>
 								)}
 								{this.state.delivery ? ([
-									<FormGroup controlId="password" key="password">
-										<InputGroup>
-											<InputGroup.Addon>
-												<Glyphicon glyph="lock" />
-											</InputGroup.Addon>
-											<FormControl
-												onChange={(event) => this.setState({ password: event.target.value })}
-												placeholder={I18n.get('Password')}
-												type="password"
-												value={password}
-											/>
-										</InputGroup>
-									</FormGroup>,
-									<FormGroup controlId="code" key="code">
-										<InputGroup>
-											<InputGroup.Addon>
-												<Glyphicon glyph="lock" />
-											</InputGroup.Addon>
-											<FormControl
-												onChange={(event) => this.setState({ code: event.target.value })}
-												placeholder={I18n.get('Code')}
-												type="text"
-												value={code}
-											/>
-										</InputGroup>
-									</FormGroup>,
+									<PasswordInput
+										icons={icons}
+										key="password"
+										noIcons={noIcons}
+										password={password}
+										updateState={(name, value) => this.setState({ [name]: value })}
+									/>,
+									<CodeInput
+										code={code}
+										icons={icons}
+										key="code"
+										noIcons={noIcons}
+										updateState={(name, value) => this.setState({ [name]: value })}
+									/>,
 								]) : (
-									<FormGroup controlId="username">
-										<InputGroup>
-											<InputGroup.Addon>
-												<Glyphicon glyph="user" />
-											</InputGroup.Addon>
-											<FormControl
-												onChange={(event) => this.setState({ username: event.target.value })}
-												placeholder={I18n.get('Username')}
-												type="text"
-												value={username}
-											/>
-										</InputGroup>
-									</FormGroup>
+									<UsernameInput
+										icons={icons}
+										noIcons={noIcons}
+										updateState={(name, value) => this.setState({ [name]: value })}
+										username={username}
+									/>
 								)}
 								<FormGroup>
 									<Button

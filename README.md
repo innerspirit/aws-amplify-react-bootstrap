@@ -47,6 +47,26 @@ Most of this is based off the work of [React Bootstrap](https://react-bootstrap.
 
 	yarn add aws-amplify-react-bootstrap
 
+## Options
+
+Custom Icons can be implemented by passing an icon object to each component
+
+	const icons = {
+		code: (<Glyphicon glyph="lock" />),
+		email: (<Glyphicon glyph="envelope" />),
+		password: (<Glyphicon glyph="lock" />),
+		phone: (<Glyphicon glyph="phone" />),
+		username: (<Glyphicon glyph="user" />),
+	};
+
+	...
+
+	<SignUp icons={icons} />
+
+You can also remove the icons by passing noIcons to the component
+
+	<SignUp noIcons />
+
 ## Usage
 
 	import {
@@ -73,15 +93,23 @@ Most of this is based off the work of [React Bootstrap](https://react-bootstrap.
 		google: google_client_id,
 	};
 
+	const icons = {
+		code: (<Glyphicon glyph="lock" />),
+		email: (<Glyphicon glyph="envelope" />),
+		password: (<Glyphicon glyph="lock" />),
+		phone: (<Glyphicon glyph="phone" />),
+		username: (<Glyphicon glyph="user" />),
+	};
+
 	const auth = () => (
 		<Authenticator hideDefault={true} theme={Theme}>
 			<Greetings />
-			<SignIn federated={federated} />
-			<ConfirmSignIn />
-			<RequireNewPassword />
-			<SignUp />
-			<ConfirmSignUp />
-			<ForgotPassword />
+			<SignIn federated={federated} icons={icons} />
+			<ConfirmSignIn icons={icons} />
+			<RequireNewPassword icons={icons} />
+			<SignUp icons={icons} />
+			<ConfirmSignUp icons={icons} />
+			<ForgotPassword icons={icons} />
 			<App />
 		</Authenticator>
 	);
